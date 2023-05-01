@@ -12,7 +12,7 @@ const getEndpoint = ({latitude, longitude}: Location) => {
 const transformForecastFormat = (response: forecastResponse) => {
   console.log(response);
   
-  return response.hourly.time.reduce<Forecast[]>((acc, _i, index) => {
+  return response.hourly.time.reduce<Forecast[]>((acc, _i, index) => { 
     acc.push({
       date: response.hourly.time[index],
       temperature: response.hourly.temperature_2m[index],
