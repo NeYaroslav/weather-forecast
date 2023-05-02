@@ -1,14 +1,16 @@
 import React, { memo } from 'react'
 import classes from './daylyForecastInfo.module.scss'
+import { convertDateToShortLocalDate } from '../../utils'
 
 interface Props {
   date: Date,
-  temperature: number,
+  temperatureMax: number,
+  temperatureMin: number,
   weatherCode: number
 }
 
-export const DaylyForecastInfo:React.FC<Props> = ({ date, temperature }) => {
-  const screenDate = date.toDateString().split(' ').slice(1, 3).join(' | ')
+export const DaylyForecastInfo:React.FC<Props> = ({ date, temperatureMax, temperatureMin }) => {
+  
   return (
     <>
       <div className={classes["info__icon"]}>
@@ -16,8 +18,8 @@ export const DaylyForecastInfo:React.FC<Props> = ({ date, temperature }) => {
           <use href="./sprite.svg#sun-behind-small-cloud-svgrepo-com"></use>
         </svg>
       </div>
-      <h4 className={classes["info__title"]}>{screenDate}</h4>
-      <span className={classes["info__temperature"]}>{temperature}°</span>
+      <h4 className={classes["info__title"]}>{convertDateToShortLocalDate(date)}</h4>
+      <span className={classes["info__temperature"]}>{temperatureMax}°/{temperatureMin}°</span>
     </>
   )
 }

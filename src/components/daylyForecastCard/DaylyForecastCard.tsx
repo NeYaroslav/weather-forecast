@@ -2,13 +2,13 @@ import React, { memo } from 'react'
 import classes from './daylyForecastCard.module.scss'
 
 interface Props {
-  wind: number
+  windSpeed: number
   precipitationProbability: number
-  pressure: number
-  humidity: number
+  sunset: string
+  sunrise: string
 }
 
-export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbability, pressure, humidity}) => {
+export const DaylyForecastCard: React.FC<Props> = ({windSpeed, precipitationProbability, sunrise, sunset}) => {
  return (
     <div className={classes["card"]}>
       <div className={classes["card__item"]}>
@@ -19,9 +19,9 @@ export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbabili
         </div>
           <div>
             <h4 className={classes["card__title"]}>
-              Wind
+              wind speed
             </h4>
-            <span>{wind}km/h</span>
+            <span>{windSpeed}km/h</span>
           </div>
       </div>
       <div className={classes["card__item"]}>
@@ -45,9 +45,9 @@ export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbabili
         </div>
           <div>
             <h4 className={classes["card__title"]}>
-              Pressure
+              sunrise
             </h4>
-            <span>{pressure}hPa</span>
+            <span>{sunrise}</span>
           </div>
       </div>
       <div className={classes["card__item"]}>
@@ -58,9 +58,9 @@ export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbabili
         </div>
           <div>
             <h4 className={classes["card__title"]}>
-              Humidity
+              sunset
             </h4>
-            <span>{humidity}%</span>
+            <span>{sunset}</span>
           </div>
       </div>
     </div>

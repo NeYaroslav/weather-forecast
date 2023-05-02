@@ -1,25 +1,24 @@
 import React, { memo } from 'react'
 import classes from './hourlyForecastItem.module.scss'
+import { HourlyForecast } from '../../shared/types'
+import { convertDateToLocalTime } from '../../utils'
 
-interface Props {
-  data?: boolean
-}
 
-export const HourlyForecastItem:React.FC<Props> = () => {
+export const HourlyForecastItem:React.FC<HourlyForecast> = ({ precipitationProbability, temperature, time }) => {
   return (
     <div className={classes.card}>
-      <div className={classes['card__time']}>20:00</div>
+      <div className={classes['card__time']}>{convertDateToLocalTime(new Date(time))}</div>
       <div className={classes["card__icon"]}>
         <svg>
           <use href="./sprite.svg#rain-alt"></use>
         </svg>
       </div>
-      <span className={classes['card__temperature']}>82°</span>
+      <span className={classes['card__temperature']}>{temperature}°</span>
       <span className={classes["card__precipitation"]}>
         <svg>
           <use href="./sprite.svg#rain-alt"></use>
         </svg>
-        15%
+        {precipitationProbability}%
       </span>
     </div>
   )

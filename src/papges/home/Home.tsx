@@ -1,44 +1,50 @@
-import React, { useState, useMemo } from "react"
+import React, { useMemo } from "react"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from "swiper";
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import { DaylyForecastCardMemo, DaylyForecastInfoMemo, HourlyForecastListMemo } from "../../components";
 import withHome, { WithHome } from "./withHome"
+import { convertDateToLocalTime } from "../../utils";
 
 
-interface Props extends WithHome {
-  num: number
-}
-
-const Home: React.FC<Props> = () => {
-  const [_s, seSlide] = useState<number>(0)
+const Home: React.FC<WithHome> = withHome(({ setSlide, dailyForecast, slide, hourlyForecast }) => {
 
   const slides = useMemo(()=> {
-    return [1, 2, 3, 4].map(() => (
-      <SwiperSlide className="slider-slide">
+    return dailyForecast?.map((forecastItem) => (
+      <SwiperSlide className="slider-slide" key={forecastItem.time}>
         <div>
-          <DaylyForecastInfoMemo date={new Date} temperature={45} weatherCode={1}/>
-          <DaylyForecastCardMemo humidity={45} precipitationProbability={8} pressure={45} wind={87}/>
+          <DaylyForecastInfoMemo
+            date={new Date(forecastItem.time)}
+            temperatureMax={Math.round(forecastItem.temperatureMax)}
+            weatherCode={forecastItem.weatherCode}
+            temperatureMin={Math.round(forecastItem.temperatureMin)}
+          />
+          <DaylyForecastCardMemo
+            sunrise={convertDateToLocalTime(new Date(forecastItem.sunrise))}
+            sunset={convertDateToLocalTime(new Date(forecastItem.sunset))}
+            precipitationProbability={forecastItem.precipitationProbability}
+            windSpeed={Math.round(forecastItem.windSpeed)}
+          />
         </div>
       </SwiperSlide>
     ))
-  }, [])
+  }, [dailyForecast])
 
   return (
     <main>
       <Swiper
         modules={[Autoplay]}
         className="slider"
-        onSlideChange={(e) => seSlide(e.realIndex)}
-        initialSlide={1}
+        onSlideChange={(swiper) => setSlide(swiper.realIndex)}
+        initialSlide={slide}
         autoplay={{stopOnLastSlide: true, delay: 1000, reverseDirection: true, disableOnInteraction: true}}
       >
         {slides}
       </Swiper>
-      <HourlyForecastListMemo date=""/>
+      <HourlyForecastListMemo forecast={hourlyForecast}/>
     </main>
   )
-}
+})
 
-export default withHome(Home)
+export default Home

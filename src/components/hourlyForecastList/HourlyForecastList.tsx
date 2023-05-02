@@ -1,20 +1,26 @@
 import React, { memo } from 'react'
 import classes from './hourlyForecastList.module.scss'
 import { HourlyForecastItemMemo } from '..'
+import { HourlyForecast } from '../../shared/types'
 
 interface Props {
-  date: string
+  forecast?: HourlyForecast[]
 }
 
-export const HourlyForecastList: React.FC<Props> = () => {
+export const HourlyForecastList: React.FC<Props> = ({forecast}) => {
   const data:0[] = []
   data.length = 24
   data.fill(0)
 
   return (
     <div className={classes['list']}>
-      {data.map(() => (
-        <HourlyForecastItemMemo/>
+      {forecast?.map((item) => (
+        <HourlyForecastItemMemo
+          precipitationProbability={item.precipitationProbability}
+          temperature={item.temperature}
+          time={item.time}
+          weatherCode={item.weatherCode}
+        />
       ))}
     </div>
   )
