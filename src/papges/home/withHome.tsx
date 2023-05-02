@@ -10,11 +10,11 @@ export interface WithHome {
 }
 
 function convertDate(date: Date) {
-  let month = `${date.getMonth()}`
+  let month = `${date.getMonth() + 1}`
   month = '0'.repeat(2 - month.length) + month
   let day = `${date.getDate()}`
   day = '0'.repeat(2 - day.length) + day 
-  return `${date.getFullYear()}-${month + 1}-${day}`
+  return `${date.getFullYear()}-${month }-${day}`
 }
 
 const withHome = <T extends WithHome>(Component: React.FC<T>) => {
