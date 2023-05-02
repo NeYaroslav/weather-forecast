@@ -1,0 +1,46 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-s);
+  border: var(--space-xxs) solid var(--accent-color-1);
+  color: var(--accent-color-1);
+  border-radius: var(--radius-s);
+
+  @media (max-width: 57.99rem){
+      width: 6rem;
+  }
+}
+
+.card__time {
+  margin-bottom: var(--space-xxs);
+}
+
+.card__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  svg {
+    width: calc(var(--space-l) * 2);
+    height: calc(var(--space-l) * 2);
+  }
+}
+.card__temperature {
+  display: block;
+  font-size: var(--font-sz-l);
+  text-align: center;
+  margin: var(--space-s) 0 auto;
+}
+.card__precipitation {
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-s);
+
+  svg {
+    width: var(--space-l);
+    height: var(--space-l);
+    margin-right: auto;
+  }
+}

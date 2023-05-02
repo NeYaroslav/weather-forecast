@@ -6,7 +6,7 @@ export interface WithHome {
 
 const withHome = <T extends WithHome>(Component: React.FC<T>) => {
   return (props: Omit<T, keyof WithHome>) => {
-    
+
     return (
       <Component {...(props as T)} data='123'/>
     )

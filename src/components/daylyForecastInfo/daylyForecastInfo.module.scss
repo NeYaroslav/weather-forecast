@@ -1,0 +1,19 @@
+.info__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+
+  svg {
+    width: 50%;
+  }
+}
+.info__title {
+  font-weight: 700;
+}
+.info__temperature {
+  font-size: var(--font-sz-xl);
+  font-weight: 900;
+  margin-top: var(--space-m);
+  margin-bottom: var(--space-m);
+}
