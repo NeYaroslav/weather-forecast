@@ -11,13 +11,13 @@ export const HourlyForecastItem:React.FC<Props> = () => {
       <div className={classes['card__time']}>20:00</div>
       <div className={classes["card__icon"]}>
         <svg>
-          <use href="/sprite.svg#rain-alt"></use>
+          <use href="./sprite.svg#rain-alt"></use>
         </svg>
       </div>
       <span className={classes['card__temperature']}>82°</span>
       <span className={classes["card__precipitation"]}>
         <svg>
-          <use href="/sprite.svg#rain-alt"></use>
+          <use href="./sprite.svg#rain-alt"></use>
         </svg>
         15%
       </span>

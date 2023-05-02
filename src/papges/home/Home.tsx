@@ -12,7 +12,7 @@ interface Props extends WithHome {
 }
 
 const Home: React.FC<Props> = () => {
-  const [slide, seSlide] = useState<number>(0)
+  const [_s, seSlide] = useState<number>(0)
 
   const slides = useMemo(()=> {
     return [1, 2, 3, 4].map(() => (

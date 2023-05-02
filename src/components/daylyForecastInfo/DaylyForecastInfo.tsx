@@ -7,14 +7,13 @@ interface Props {
   weatherCode: number
 }
 
-export const DaylyForecastInfo:React.FC<Props> = ({ date, temperature, weatherCode }) => {
+export const DaylyForecastInfo:React.FC<Props> = ({ date, temperature }) => {
   const screenDate = date.toDateString().split(' ').slice(1, 3).join(' | ')
-
   return (
     <>
       <div className={classes["info__icon"]}>
         <svg>
-          <use href="/sprite.svg#sun-behind-small-cloud-svgrepo-com"></use>
+          <use href="./sprite.svg#sun-behind-small-cloud-svgrepo-com"></use>
         </svg>
       </div>
       <h4 className={classes["info__title"]}>{screenDate}</h4>

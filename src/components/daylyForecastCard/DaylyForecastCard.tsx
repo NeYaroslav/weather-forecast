@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { DaylyForecastInfoMemo } from '..'
 import classes from './daylyForecastCard.module.scss'
 
 interface Props {
@@ -15,7 +14,7 @@ export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbabili
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="/sprite.svg#direction"/>
+            <use href="./sprite.svg#direction"/>
           </svg>
         </div>
           <div>
@@ -28,7 +27,7 @@ export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbabili
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="/sprite.svg#rain-alt"/>
+            <use href="./sprite.svg#rain-alt"/>
           </svg>
         </div>
           <div>
@@ -41,7 +40,7 @@ export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbabili
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="/sprite.svg#temperature"/>
+            <use href="./sprite.svg#temperature"/>
           </svg>
         </div>
           <div>
@@ -54,7 +53,7 @@ export const DaylyForecastCard: React.FC<Props> = ({wind, precipitationProbabili
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="/sprite.svg#drop-fill"/>
+            <use href="./sprite.svg#drop-fill"/>
           </svg>
         </div>
           <div>
