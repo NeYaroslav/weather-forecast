@@ -8,7 +8,7 @@ import withHome, { WithHome } from "./withHome"
 import { convertDateToLocalTime } from "../../utils";
 
 
-const Home: React.FC<WithHome> = withHome(({ setSlide, dailyForecast, slide, hourlyForecast }) => {
+const Home: React.FC<WithHome> = ({ setSlide, dailyForecast, slide, hourlyForecast }) => {
 
   const slides = useMemo(()=> {
     return dailyForecast?.map((forecastItem) => (
@@ -45,6 +45,6 @@ const Home: React.FC<WithHome> = withHome(({ setSlide, dailyForecast, slide, hou
       <HourlyForecastListMemo forecast={hourlyForecast}/>
     </main>
   )
-})
+}
 
-export default Home
+export default withHome(Home)

@@ -14,7 +14,7 @@ function convertDate(date: Date) {
   month = '0'.repeat(2 - month.length) + month
   let day = `${date.getDate()}`
   day = '0'.repeat(2 - day.length) + day 
-  return `${date.getFullYear()}-${month}-${day}`
+  return `${date.getFullYear()}-${month + 1}-${day}`
 }
 
 const withHome = <T extends WithHome>(Component: React.FC<T>) => {
