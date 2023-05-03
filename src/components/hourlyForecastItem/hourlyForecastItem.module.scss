@@ -1,14 +1,20 @@
+.card_current, 
 .card {
   display: flex;
   flex-direction: column;
   padding: var(--space-s);
   border: var(--space-xxs) solid var(--accent-color-1);
-  color: var(--accent-color-1);
   border-radius: var(--radius-s);
-
   @media (max-width: 57.99rem){
-      width: 6rem;
+    width: 6rem;
   }
+}
+.card {
+  color: var(--accent-color-1);
+}
+.card_current {
+  color: var(--primary-color-1);
+  background: var(--accent-color-1);
 }
 
 .card__time {
@@ -39,8 +45,8 @@
   margin-top: var(--space-s);
 
   svg {
-    width: var(--space-l);
-    height: var(--space-l);
+    width: calc(var(--space-m) * 2);
+    height: calc(var(--space-m) * 2);
     margin-right: auto;
   }
 }

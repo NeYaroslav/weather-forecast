@@ -9,7 +9,7 @@ const getDaylyForecast = ({latitude, longitude}: Location) => {
   return `forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max,sunrise,sunset&timezone=auto`
 }
 const getHourlyForecast = ({date, latitude, longitude}: LocationWithDate) => {
-  return `forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation_probability,weathercode&start_date=${date}&end_date=${date}`
+  return `forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,is_day,precipitation_probability,weathercode&start_date=${date}&end_date=${date}`
 }
 
 
@@ -39,7 +39,8 @@ const transformHourlyForecast = (response: ReceivedHourlyForecast):HourlyForecas
       precipitationProbability: response.hourly.precipitation_probability[index],
       temperature: response.hourly.temperature_2m[index],
       time: response.hourly.time[index],
-      weatherCode: response.hourly.weathercode[index]
+      weatherCode: response.hourly.weathercode[index],
+      isDay: Boolean(response.hourly.is_day[index])
     })
     return acc
   }, [])

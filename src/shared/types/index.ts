@@ -63,6 +63,7 @@ export interface ReceivedHourlyForecast {
     temperature_2m: number[]
     time: string[]
     weathercode: number[]
+    is_day: number[]
   }
 }
 
@@ -71,6 +72,7 @@ export interface HourlyForecast {
   temperature: number
   time: string
   weatherCode: number
+  isDay: boolean
 }
 
 

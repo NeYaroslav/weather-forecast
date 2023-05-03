@@ -4,23 +4,14 @@ import { HourlyForecastItemMemo } from '..'
 import { HourlyForecast } from '../../shared/types'
 
 interface Props {
-  forecast?: HourlyForecast[]
+  forecast: HourlyForecast[]
 }
 
 export const HourlyForecastList: React.FC<Props> = ({forecast}) => {
-  const data:0[] = []
-  data.length = 24
-  data.fill(0)
-
   return (
     <div className={classes['list']}>
-      {forecast?.map((item) => (
-        <HourlyForecastItemMemo
-          precipitationProbability={item.precipitationProbability}
-          temperature={item.temperature}
-          time={item.time}
-          weatherCode={item.weatherCode}
-        />
+      {forecast.map((forecasItem) => (
+        <HourlyForecastItemMemo {...forecasItem}/>
       ))}
     </div>
   )

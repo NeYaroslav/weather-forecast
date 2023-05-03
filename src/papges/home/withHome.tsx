@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useLazyGetDaylyForecastQuery, useLazyGetHourlyForecastQuery } from '../../redux/rootApi'
 import { DailyForecast, HourlyForecast, Location, NullableValue } from '../../shared/types'
+import { convertDateToRequestFormat } from '../../utils'
 
 export interface WithHome {
   dailyForecast: DailyForecast[],
   setSlide: React.Dispatch<React.SetStateAction<number>>
   slide: number
   hourlyForecast: HourlyForecast[]
+  isLoading: boolean
 }
 
-function convertDate(date: Date) {
-  let month = `${date.getMonth() + 1}`
-  month = '0'.repeat(2 - month.length) + month
-  let day = `${date.getDate()}`
-  day = '0'.repeat(2 - day.length) + day 
-  return `${date.getFullYear()}-${month }-${day}`
-}
+
 
 const withHome = <T extends WithHome>(Component: React.FC<T>) => {
   return (props: Omit<T, keyof WithHome>) => {
@@ -28,7 +24,7 @@ const withHome = <T extends WithHome>(Component: React.FC<T>) => {
       navigator.geolocation.getCurrentPosition(position => {
         setLocation(position.coords)
       })
-    }, [])
+    }, [setLocation])
 
     useEffect(() => {
       if(!location.latitude || !location.longitude) return
@@ -43,10 +39,10 @@ const withHome = <T extends WithHome>(Component: React.FC<T>) => {
     }, [location, getDaylyForecast])
 
     useEffect(() => {
-      if(!daylyForecast.isSuccess || !daylyForecast.data || !location.latitude || !location.longitude) return
-      
+      if(!daylyForecast.data || !location.latitude || !location.longitude) return
+
       const signal = getHourlyForecast({
-        date: convertDate(new Date(daylyForecast?.data[slide].time)),
+        date: convertDateToRequestFormat(new Date(daylyForecast.data[slide].time)),
         latitude: location.latitude,
         longitude: location.longitude
       })
@@ -54,11 +50,18 @@ const withHome = <T extends WithHome>(Component: React.FC<T>) => {
       return () => {
         signal.abort()
       }
-    }, [ daylyForecast, getHourlyForecast, location, slide])
-    
+    }, [daylyForecast.data, getHourlyForecast, location, slide])
 
     return (
-      <Component {...(props as T)} dailyForecast={daylyForecast.data} hourlyForecast={hourlyForecast.data} slide={slide} setSlide={setSlide} data='123'/>
+      <Component
+        {...(props as T)}
+        dailyForecast={daylyForecast.data}
+        hourlyForecast={hourlyForecast.data}
+        slide={slide}
+        setSlide={setSlide}
+        data='123'
+        isLoading={hourlyForecast.isUninitialized || hourlyForecast.isLoading}
+      />
     )
   }
 }

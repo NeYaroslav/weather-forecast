@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import classes from './daylyForecastCard.module.scss'
+import { convertDateToLocalTime } from '../../utils'
 
 interface Props {
   windSpeed: number
@@ -14,25 +15,25 @@ export const DaylyForecastCard: React.FC<Props> = ({windSpeed, precipitationProb
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="./sprite.svg#direction"/>
+            <use href="/sprite.svg#wind"/>
           </svg>
         </div>
           <div>
             <h4 className={classes["card__title"]}>
-              wind speed
+              Max wind speed
             </h4>
-            <span>{windSpeed}km/h</span>
+            <span>{Math.round(windSpeed)}km/h</span>
           </div>
       </div>
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="./sprite.svg#rain-alt"/>
+            <use href="sprite.svg#precipitation"/>
           </svg>
         </div>
           <div>
             <h4 className={classes["card__title"]}>
-              Chanse of rain
+              Chanse of precipitation
             </h4>
             <span>{precipitationProbability}%</span>
           </div>
@@ -40,27 +41,27 @@ export const DaylyForecastCard: React.FC<Props> = ({windSpeed, precipitationProb
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="./sprite.svg#temperature"/>
+            <use href="/sprite.svg#sunrise"/>
           </svg>
         </div>
           <div>
             <h4 className={classes["card__title"]}>
-              sunrise
+              Sunrise
             </h4>
-            <span>{sunrise}</span>
+            <span>{convertDateToLocalTime(new Date(sunrise))}</span>
           </div>
       </div>
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="./sprite.svg#drop-fill"/>
+            <use href="/sprite.svg#sunset"/>
           </svg>
         </div>
           <div>
             <h4 className={classes["card__title"]}>
-              sunset
+              Sunset
             </h4>
-            <span>{sunset}</span>
+            <span>{convertDateToLocalTime(new Date(sunset))}</span>
           </div>
       </div>
     </div>
