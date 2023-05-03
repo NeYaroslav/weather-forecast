@@ -13,13 +13,13 @@ export const HourlyForecastItem:React.FC<HourlyForecast> = ({ precipitationProba
       <div className={classes['card__time']}>{convertDateToLocalTime(date)}</div>
       <div className={classes["card__icon"]}>
         <svg>
-          <use href={`/sprite.svg#code-${getSvgWeatherCode(weatherCode)}${[0,1,2].includes(weatherCode) && !isDay ? '-moon': ''}`}></use>
+          <use href={`sprite.svg#code-${getSvgWeatherCode(weatherCode)}${[0,1,2].includes(weatherCode) && !isDay ? '-moon': ''}`}></use>
         </svg>
       </div>
       <span className={classes['card__temperature']}>{Math.round(temperature)}°</span>
       <span className={classes["card__precipitation"]}>
         <svg>
-          <use href="/sprite.svg#precipitation"></use>
+          <use href="sprite.svg#precipitation"></use>
         </svg>
         {precipitationProbability}%
       </span>

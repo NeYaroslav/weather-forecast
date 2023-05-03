@@ -15,7 +15,7 @@ export const DaylyForecastCard: React.FC<Props> = ({windSpeed, precipitationProb
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="/sprite.svg#wind"/>
+            <use href="sprite.svg#wind"/>
           </svg>
         </div>
           <div>
@@ -41,7 +41,7 @@ export const DaylyForecastCard: React.FC<Props> = ({windSpeed, precipitationProb
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="/sprite.svg#sunrise"/>
+            <use href="sprite.svg#sunrise"/>
           </svg>
         </div>
           <div>
@@ -54,7 +54,7 @@ export const DaylyForecastCard: React.FC<Props> = ({windSpeed, precipitationProb
       <div className={classes["card__item"]}>
         <div className={classes["card__icon"]}>
           <svg>
-            <use href="/sprite.svg#sunset"/>
+            <use href="sprite.svg#sunset"/>
           </svg>
         </div>
           <div>
